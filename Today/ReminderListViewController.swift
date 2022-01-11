@@ -7,13 +7,10 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ReminderListViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
     }
-
-
 }
-
