@@ -73,7 +73,32 @@
                             <outlet property="delegate" destination="3LC-hl-WH2" id="kLW-nI-jb9"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="UnA-xG-wRT"/>
+                    <toolbarItems>
+                        <barButtonItem systemItem="add" id="EuZ-pe-wpA">
+                            <connections>
+                                <action selector="addButtonTriggered:" destination="3LC-hl-WH2" id="eCi-1v-NNm"/>
+                            </connections>
+                        </barButtonItem>
+                    </toolbarItems>
+                    <navigationItem key="navigationItem" id="UnA-xG-wRT">
+                        <nil key="title"/>
+                        <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="zEq-u6-kOj">
+                            <rect key="frame" x="117.5" y="5.5" width="179" height="33"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <segments>
+                                <segment title="Today"/>
+                                <segment title="Future"/>
+                                <segment title="All"/>
+                            </segments>
+                            <connections>
+                                <action selector="segmenteControlChanged:" destination="3LC-hl-WH2" eventType="valueChanged" id="eGg-WF-Xtc"/>
+                            </connections>
+                        </segmentedControl>
+                    </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="filterSegmentedControl" destination="zEq-u6-kOj" id="tGC-oD-CJQ"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Hb8-2X-yhs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -82,7 +107,7 @@
         <!--View Reminder-->
         <scene sceneID="qgE-pe-Pf6">
             <objects>
-                <tableViewController id="tNG-u4-piT" customClass="ReminderDetailViewController" customModule="Today" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="ReminderDetailViewController" id="tNG-u4-piT" customClass="ReminderDetailViewController" customModule="Today" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" id="Rsb-CG-c5T">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -196,13 +221,17 @@
         <!--Navigation Controller-->
         <scene sceneID="zJl-eO-a5l">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="h3Q-nE-RIc" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" toolbarHidden="NO" id="h3Q-nE-RIc" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="HMk-gi-onw">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="ea4-v3-Nbn">
+                        <rect key="frame" x="0.0" y="813" width="414" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
                     <connections>
                         <segue destination="3LC-hl-WH2" kind="relationship" relationship="rootViewController" id="bRj-0g-JTg"/>
                     </connections>
