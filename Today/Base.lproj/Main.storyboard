@@ -3,6 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -15,9 +16,48 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <view key="tableHeaderView" contentMode="scaleToFill" id="fZv-KL-Iqe" userLabel="Progress Header View">
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="414"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vks-fU-C8B" userLabel="Progress Container View">
+                                    <rect key="frame" x="62" y="62" width="290" height="290"/>
+                                    <subviews>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="am2-Sj-efk" userLabel="Percent Incomplete View">
+                                            <rect key="frame" x="0.0" y="0.0" width="290" height="144"/>
+                                            <color key="backgroundColor" name="LIST_ProgressCircleIncomplete"/>
+                                        </view>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rcY-i7-VGb" userLabel="Percent Complete View">
+                                            <rect key="frame" x="0.0" y="144" width="290" height="146"/>
+                                            <color key="backgroundColor" name="LIST_ProgressCircleComplete"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="146" id="Knx-mS-0sd"/>
+                                            </constraints>
+                                        </view>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <constraints>
+                                        <constraint firstItem="rcY-i7-VGb" firstAttribute="leading" secondItem="vks-fU-C8B" secondAttribute="leading" id="1Vc-m6-SFJ"/>
+                                        <constraint firstAttribute="trailing" secondItem="rcY-i7-VGb" secondAttribute="trailing" id="3s9-ks-zf7"/>
+                                        <constraint firstItem="am2-Sj-efk" firstAttribute="leading" secondItem="vks-fU-C8B" secondAttribute="leading" id="7WU-jP-YdK"/>
+                                        <constraint firstAttribute="trailing" secondItem="am2-Sj-efk" secondAttribute="trailing" id="EqX-yB-ORm"/>
+                                        <constraint firstItem="am2-Sj-efk" firstAttribute="top" secondItem="vks-fU-C8B" secondAttribute="top" id="I8t-3E-9ET"/>
+                                        <constraint firstItem="rcY-i7-VGb" firstAttribute="top" secondItem="am2-Sj-efk" secondAttribute="bottom" id="l0c-cw-cZT"/>
+                                        <constraint firstAttribute="width" secondItem="vks-fU-C8B" secondAttribute="height" multiplier="1:1" id="tYU-AG-jnz"/>
+                                        <constraint firstAttribute="bottom" secondItem="rcY-i7-VGb" secondAttribute="bottom" id="wZW-yU-7Ay"/>
+                                    </constraints>
+                                </view>
+                            </subviews>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstItem="vks-fU-C8B" firstAttribute="centerX" secondItem="fZv-KL-Iqe" secondAttribute="centerX" id="ptl-CB-o12"/>
+                                <constraint firstItem="vks-fU-C8B" firstAttribute="width" secondItem="fZv-KL-Iqe" secondAttribute="width" multiplier="0.7" id="pty-m2-Tqd"/>
+                                <constraint firstItem="vks-fU-C8B" firstAttribute="centerY" secondItem="fZv-KL-Iqe" secondAttribute="centerY" id="sPV-pa-IJa"/>
+                            </constraints>
+                        </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="ReminderListCell" rowHeight="99" id="5TB-iN-Zgh" customClass="ReminderListCell" customModule="Today" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="44.5" width="414" height="99"/>
+                                <rect key="frame" x="0.0" y="458.5" width="414" height="99"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="5TB-iN-Zgh" id="a11-at-jLS">
                                     <rect key="frame" x="0.0" y="0.0" width="385.5" height="99"/>
@@ -29,6 +69,7 @@
                                                 <constraint firstAttribute="width" secondItem="H0R-Cc-fXh" secondAttribute="height" multiplier="1:1" id="An7-nb-k0E"/>
                                                 <constraint firstAttribute="width" constant="44" id="Oju-y6-SmJ"/>
                                             </constraints>
+                                            <color key="tintColor" name="LIST_ReminderCompletedCircleTint"/>
                                             <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                             <state key="normal" backgroundImage="circle" catalog="system"/>
                                             <connections>
@@ -36,14 +77,14 @@
                                             </connections>
                                         </button>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VQO-67-qvo">
-                                            <rect key="frame" x="72" y="20" width="33" height="21"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <rect key="frame" x="72" y="20" width="30" height="17"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5rA-Dc-cr3">
-                                            <rect key="frame" x="72" y="49" width="36" height="21"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <rect key="frame" x="72" y="45" width="28.5" height="16"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -60,6 +101,7 @@
                                         <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="VQO-67-qvo" secondAttribute="trailing" constant="20" symbolic="YES" id="uYR-oR-N85"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <color key="backgroundColor" name="LIST_TableRowBackground"/>
                                 <connections>
                                     <outlet property="dateLabel" destination="5rA-Dc-cr3" id="AR4-Tf-L0H"/>
                                     <outlet property="doneButton" destination="H0R-Cc-fXh" id="4mm-Go-OlS"/>
@@ -91,13 +133,17 @@
                                 <segment title="All"/>
                             </segments>
                             <connections>
-                                <action selector="segmenteControlChanged:" destination="3LC-hl-WH2" eventType="valueChanged" id="eGg-WF-Xtc"/>
+                                <action selector="segmentControlChanged:" destination="3LC-hl-WH2" eventType="valueChanged" id="Lhq-go-Uxh"/>
                             </connections>
                         </segmentedControl>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="filterSegmentedControl" destination="zEq-u6-kOj" id="tGC-oD-CJQ"/>
+                        <outlet property="percentCompleteHeightConstraint" destination="Knx-mS-0sd" id="omh-LC-9ip"/>
+                        <outlet property="percentCompleteView" destination="rcY-i7-VGb" id="1fq-eH-ADr"/>
+                        <outlet property="percentIncompleteView" destination="am2-Sj-efk" id="EDk-N8-xXj"/>
+                        <outlet property="progressContainerView" destination="vks-fU-C8B" id="Hbq-Ao-odg"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Hb8-2X-yhs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -111,7 +157,7 @@
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" id="Rsb-CG-c5T">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" name="VIEW_Background"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ReminderDetailCell" textLabel="3kN-KK-dUQ" style="IBUITableViewCellStyleDefault" id="dU4-Ha-8ce">
                                 <rect key="frame" x="0.0" y="49.5" width="414" height="43.5"/>
@@ -129,17 +175,21 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <color key="tintColor" name="VIEW_IconTint"/>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="EditTitleCell" id="qpJ-Qt-T3N" customClass="EditTitleCell" customModule="Today" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="93" width="414" height="34.5"/>
+                                <rect key="frame" x="0.0" y="93" width="414" height="44.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="qpJ-Qt-T3N" id="OR4-bR-aAd">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="34.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="44.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="TextField" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FaK-ak-6hy">
-                                            <rect key="frame" x="20" y="0.0" width="374" height="34.5"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="TextField" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="FaK-ak-6hy">
+                                            <rect key="frame" x="20" y="0.0" width="374" height="44.5"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="44" id="TTg-yP-vDj"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                             <textInputTraits key="textInputTraits"/>
                                         </textField>
                                     </subviews>
@@ -155,7 +205,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="EditDateCell" rowHeight="216" id="0vk-PW-nJ0" customClass="EditDateCell" customModule="Today" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="127.5" width="414" height="216"/>
+                                <rect key="frame" x="0.0" y="137.5" width="414" height="216"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="0vk-PW-nJ0" id="xAU-Ia-CRQ">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="216"/>
@@ -177,7 +227,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="EditNotesCell" rowHeight="216" id="kNh-R5-no5" customClass="EditNotesCell" customModule="Today" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="343.5" width="414" height="216"/>
+                                <rect key="frame" x="0.0" y="353.5" width="414" height="216"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="kNh-R5-no5" id="OHs-Be-rAB">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="216"/>
@@ -185,13 +235,11 @@
                                     <subviews>
                                         <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="DUv-lO-LEO">
                                             <rect key="frame" x="20" y="11" width="374" height="194"/>
-                                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="194" id="IaV-AF-Fna"/>
                                             </constraints>
-                                            <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                             <color key="textColor" systemColor="labelColor"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                         </textView>
                                     </subviews>
@@ -202,6 +250,7 @@
                                         <constraint firstItem="DUv-lO-LEO" firstAttribute="top" secondItem="OHs-Be-rAB" secondAttribute="topMargin" id="uKS-oW-n2V"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
                                     <outlet property="notesTextView" destination="DUv-lO-LEO" id="Lgw-pH-rEz"/>
                                 </connections>
@@ -226,11 +275,15 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="HMk-gi-onw">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" name="NavigationItemTint"/>
+                        <color key="barTintColor" name="NavigationBackground"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="ea4-v3-Nbn">
                         <rect key="frame" x="0.0" y="813" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" name="ToolbarItemTint"/>
+                        <color key="barTintColor" name="ToolbarBackground"/>
                     </toolbar>
                     <connections>
                         <segue destination="3LC-hl-WH2" kind="relationship" relationship="rootViewController" id="bRj-0g-JTg"/>
@@ -243,6 +296,36 @@
     </scenes>
     <resources>
         <image name="circle" catalog="system" width="128" height="121"/>
+        <namedColor name="LIST_ProgressCircleComplete">
+            <color white="1" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </namedColor>
+        <namedColor name="LIST_ProgressCircleIncomplete">
+            <color white="1" alpha="0.25" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </namedColor>
+        <namedColor name="LIST_ReminderCompletedCircleTint">
+            <color red="0.0" green="0.0" blue="0.0" alpha="0.65299999713897705" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+        <namedColor name="LIST_TableRowBackground">
+            <color white="1" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </namedColor>
+        <namedColor name="NavigationBackground">
+            <color red="0.10999999195337296" green="0.10999999195337296" blue="0.11800000071525574" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="NavigationItemTint">
+            <color red="0.038999993354082108" green="0.51800000667572021" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="ToolbarBackground">
+            <color red="0.10999999195337296" green="0.10999999195337296" blue="0.11800000071525574" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="ToolbarItemTint">
+            <color red="0.038999993354082108" green="0.51800000667572021" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="VIEW_Background">
+            <color red="0.28200000524520874" green="0.28200000524520874" blue="0.28999999165534973" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="VIEW_IconTint">
+            <color red="0.038999993354082108" green="0.51800000667572021" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
